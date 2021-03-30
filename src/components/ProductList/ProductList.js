@@ -3,7 +3,12 @@ import { Product } from "..";
 
 const ProductList = ({ products, compare, nameSearch }) => {
   const renderProducts = () => {
-    return products;
+    return (nameSearch.length > 0) ? products.filter(x => {
+      console.log(x['price'].slice(1));
+      let price = parseFloat(x['price'].slice(1));
+      let priceSearch = parseFloat(nameSearch);
+      return price <= priceSearch;
+    }) : products;
   };
 
   return (
